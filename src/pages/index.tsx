@@ -10,23 +10,23 @@ export type Blog = {
 };
 
 const Home: NextPage<MicroCMSListResponse<Blog>> = (props) => {
-  const [search ,setSearch ] = useState<MicroCMSListResponse<Blog>>();
-  
-  const handleSubmit: ComponentProps<"form">["onSubmit"] = async(event) => {
+  const [search, setSearch] = useState<MicroCMSListResponse<Blog>>();
+
+  const handleSubmit: ComponentProps<"form">["onSubmit"] = async (event) => {
     event.preventDefault();
     const q = event.currentTarget.query.value;
-    const data = await fetch("/api/search",{
+    const data = await fetch("/api/search", {
       method: "POST",
-      headers: {"Content-type": "application/json"},
+      headers: { "Content-type": "application/json" },
       body: JSON.stringify({ q }),
-    })
-    const json: MicroCMSListResponse<Blog> = await data.json()
-    setSearch(json)
-  }
+    });
+    const json: MicroCMSListResponse<Blog> = await data.json();
+    setSearch(json);
+  };
 
   const handleClick: ComponentProps<"button">["onClick"] = () => {
-    setSearch(undefined)
-  }
+    setSearch(undefined);
+  };
 
   const contents = search ? search.contents : props.contents;
   const totalCount = search ? search.totalCount : props.totalCount;
@@ -34,12 +34,13 @@ const Home: NextPage<MicroCMSListResponse<Blog>> = (props) => {
   return (
     <div>
       <form className="flex gap-x-2" onSubmit={handleSubmit}>
-        <input type="text" name="query" className="border border-black p-2"/>
+        <input type="text" name="query" className="border border-black p-2" />
         <button className="border border-black p-2">検索</button>
-        <button 
-          type="reset" 
-          className="border border-black p-2" 
-          onClick={handleClick}>
+        <button
+          type="reset"
+          className="border border-black p-2"
+          onClick={handleClick}
+        >
           リセット
         </button>
       </form>
@@ -66,9 +67,9 @@ const Home: NextPage<MicroCMSListResponse<Blog>> = (props) => {
 export const getStaticProps: GetStaticProps<
   MicroCMSListResponse<Blog>
 > = async () => {
-  const data = await client.getList<Blog>({ 
+  const data = await client.getList<Blog>({
     endpoint: "blog",
-   });
+  });
   return {
     props: data,
   };

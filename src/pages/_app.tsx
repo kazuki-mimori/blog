@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <header className="border-b border-gray-300 py-8">
         <h1>
           <Link href="/">
-            <a className="text-5xl font-bold">mimoブログ</a>
+            <a className="text-5xl font-bold">簡易ブログ</a>
           </Link>
         </h1>
       </header>

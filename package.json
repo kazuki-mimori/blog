@@ -7,6 +7,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "antd": "^4.21.7",
     "dayjs": "^1.11.1",
     "microcms-js-sdk": "^2.0.0",
     "next": "latest",
